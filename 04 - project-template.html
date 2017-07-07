@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>Atomic</title>
+		<title>Project Starter</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Styles -->
@@ -14,12 +14,55 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
+
+			/**
+			 * Add box sizing to everything
+			 * @link http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+			 */
+			*,
+			*:before,
+			*:after {
+				box-sizing: border-box;
+			}
+
+			img {
+				height: auto;
+				max-width: 100%;
+			}
+
+			.row {
+				margin-left: -1.4%;
+				margin-right: -1.4%;
+			}
+
+			.row:before,
+			.row:after {
+				display: table;
+				content: " ";
+			}
+
+			.row:after {
+				clear: both;
+			}
+
+			.grid {
+				float: left;
+				padding-left: 1.4%;
+				padding-right: 1.4%;
+				width: 100%;
+			}
+
+			@media (min-width: 20em) {
+				.grid {
+					width: 25%;
+				}
+			}
 		</style>
 	</head>
 
 	<body>
 
-		<p>Hello, world!</p>
+		<div id="gallery"></div>
 
 
 		<!-- Scripts -->
@@ -29,61 +72,14 @@
 
 			// GET
 			atomic.ajax({
-				url: 'https://jsonplaceholder.typicode.com/posts'
+				url: 'https://jsonplaceholder.typicode.com/photos'
 			})
-				.success(function (data, xhr) {
+				.success(function (data) {
 					// What do when the request is successful
-					console.log(data);
-					console.log(xhr);
 				})
 				.error(function () {
 					// What do when the request fails
-				})
-				.always(function (data, xhr) {
-					// Code that should run regardless of the request status
 				});
-
-
-			// POST
-			atomic.ajax({
-				type: 'POST',
-				url: 'https://jsonplaceholder.typicode.com/posts',
-				data: {
-					title: 'foo',
-					body: 'bar',
-					userId: 1
-				}
-			})
-				.success(function (data, xhr) {
-					// What do when the request is successful
-					console.log(data);
-					console.log(xhr);
-				})
-				.error(function () {
-					// What do when the request fails
-				})
-				.always(function (data, xhr) {
-					// Code that should run regardless of the request status
-				});
-
-
-			// JSONP
-
-			var myCallback = function (data) {
-				console.log(data);
-			};
-
-			atomic.ajax({
-				type: 'JSONP',
-				url: 'https://jsfiddle.net/echo/jsonp/',
-				callback: 'myCallback',
-				data: {
-					text: 'something',
-					par1: 'another',
-					par2: 'one-more',
-					bool: true
-				}
-			});
 		</script>
 	</body>
 </html>
